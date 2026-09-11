@@ -1,10 +1,3 @@
-//
-//  WraptureSettings.swift
-//  WraptureExt
-//
-//  Created by Rob Anderson on 11/09/2026.
-//
-
 import Foundation
 
 enum WraptureSettings {

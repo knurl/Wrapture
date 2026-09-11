@@ -1,24 +1,16 @@
-//
-//  WraptureExtTests.swift
-//  WraptureExtTests
-//
-//  Created by Rob Anderson on 11/09/2026.
-//
-
 import Testing
-
-#if canImport(XcodeKit)
-@testable import WraptureExt
+import Foundation
 
 struct WraptureExtTests {
     private let formatter = SourceEditorCommand()
+    private let maximumLineLength = 100
 
     @Test func wrapsIndentedLineComment() {
         let input = [
             "    // Alpha beta gamma delta epsilon zeta eta theta iota kappa lambda mu nu xi omicron pi rho sigma tau upsilon phi chi psi omega alpha beta gamma.\n"
         ]
 
-        let output = formatter.rewrapCommentLines(input)
+        let output = formatter.rewrapCommentLines(input, maximumLineLength: maximumLineLength)
 
         #expect(output == [
             "    // Alpha beta gamma delta epsilon zeta eta theta iota kappa lambda mu nu xi omicron pi rho sigma\n",
@@ -34,7 +26,7 @@ struct WraptureExtTests {
             "// Second paragraph follows the intentional gap and should remain visually separated after wrapping.\n"
         ]
 
-        let output = formatter.rewrapCommentLines(input)
+        let output = formatter.rewrapCommentLines(input, maximumLineLength: maximumLineLength)
 
         #expect(output.contains("//\n"))
         #expect(output.first == "// First paragraph has enough words to reflow into a clean comment line without disturbing the blank\n")
@@ -48,7 +40,7 @@ struct WraptureExtTests {
             "///   so wrapping should keep continuation indentation aligned with the original list item and its follow-up text.\n"
         ]
 
-        let output = formatter.rewrapCommentLines(input)
+        let output = formatter.rewrapCommentLines(input, maximumLineLength: maximumLineLength)
 
         #expect(output.first?.hasPrefix("/// - parameter value:") == true)
         #expect(output.dropFirst().allSatisfy { $0.hasPrefix("///   ") })
@@ -64,7 +56,7 @@ struct WraptureExtTests {
                 "\(marker)     second line is indented and establishes the hanging indentation for every wrapped continuation that follows.\n"
             ]
 
-            let output = formatter.rewrapCommentLines(input)
+            let output = formatter.rewrapCommentLines(input, maximumLineLength: maximumLineLength)
 
             #expect(output.count >= 3)
             #expect(output.first?.hasPrefix("\(marker) First line") == true)
@@ -84,7 +76,7 @@ struct WraptureExtTests {
                 " */\n"
             ]
 
-            let output = formatter.rewrapCommentLines(input)
+            let output = formatter.rewrapCommentLines(input, maximumLineLength: maximumLineLength)
             let contentLines = output.dropFirst().dropLast()
 
             #expect(output.first == "\(opener)\n")
@@ -104,7 +96,7 @@ struct WraptureExtTests {
             "             */\n"
         ]
 
-        let output = formatter.rewrapCommentLines(input)
+        let output = formatter.rewrapCommentLines(input, maximumLineLength: maximumLineLength)
 
         #expect(output.first?.hasPrefix("            /* 2) A document already exists") == true)
         #expect(output.dropFirst().dropLast().allSatisfy { $0.hasPrefix("             *    ") })
@@ -119,7 +111,7 @@ struct WraptureExtTests {
             "     */\n"
         ]
 
-        let output = formatter.rewrapCommentLines(input)
+        let output = formatter.rewrapCommentLines(input, maximumLineLength: maximumLineLength)
 
         #expect(output.first == "    /**\n")
         #expect(output.last == "     */\n")
@@ -135,7 +127,7 @@ struct WraptureExtTests {
             "let next = 2\n"
         ]
 
-        let output = formatter.rewrapCommentLines(input, insertionLine: 2)
+        let output = formatter.rewrapCommentLines(input, insertionLine: 2, maximumLineLength: maximumLineLength)
 
         #expect(output.first == "let value = 1\n")
         #expect(output.last == "let next = 2\n")
@@ -152,7 +144,7 @@ struct WraptureExtTests {
             unselectedComment
         ]
 
-        let output = formatter.rewrapCommentLines(input, selectedLines: 0..<1)
+        let output = formatter.rewrapCommentLines(input, selectedLines: 0..<1, maximumLineLength: maximumLineLength)
 
         #expect(output.count == 3)
         #expect(output[0] == "// Alpha beta gamma delta epsilon zeta eta theta iota kappa lambda mu nu xi omicron pi rho sigma tau\n")
@@ -166,7 +158,7 @@ struct WraptureExtTests {
             "// Alpha beta gamma delta epsilon zeta eta theta iota kappa lambda mu nu xi omicron pi rho sigma tau upsilon phi chi psi omega alpha beta gamma.\r\n"
         ]
 
-        let output = formatter.rewrapCommentLines(input)
+        let output = formatter.rewrapCommentLines(input, maximumLineLength: maximumLineLength)
 
         #expect(output.allSatisfy { $0.hasSuffix("\r\n") })
         expectLinesFit(output)
@@ -178,4 +170,3 @@ struct WraptureExtTests {
         }
     }
 }
-#endif

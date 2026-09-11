@@ -1,16 +1,16 @@
-//
-//  SourceEditorCommand.swift
-//  WraptureExt
-//
-//  Created by Rob Anderson on 11/09/2026.
-//
-
 import Foundation
-import XcodeKit
 
-class SourceEditorCommand: NSObject, XCSourceEditorCommand {
-    func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void) {
-        rewrapComments(in: invocation.buffer)
+class SourceEditorCommand: NSObject {
+    @objc(performWithInvocation:completionHandler:)
+    func perform(with invocation: NSObject, completionHandler: @escaping (NSError?) -> Void) {
+        guard let buffer = invocation.value(forKey: "buffer") as? NSObject,
+              let lines = buffer.value(forKey: "lines") as? NSMutableArray else {
+            completionHandler(nil)
+            return
+        }
+
+        let selections = buffer.value(forKey: "selections") as? NSArray
+        rewrapComments(in: lines, selections: selections)
         completionHandler(nil)
     }
 
@@ -36,33 +36,44 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
         return lines.compactMap { $0 as? String }
     }
 
-    private func rewrapComments(in buffer: XCSourceTextBuffer) {
-        let selectedRange = selectedLineRange(in: buffer)
-        let lineCount = buffer.lines.count
-        guard lineCount > 0 else { return }
+    private func rewrapComments(in lines: NSMutableArray, selections: NSArray?) {
+        let selectedRange = selectedLineRange(lineCount: lines.count, selections: selections)
+        guard lines.count > 0 else { return }
         let maximumLineLength = WraptureSettings.wrapLength
 
         if selectedRange.isInsertionPoint,
-           let block = commentBlock(containing: selectedRange.start, in: buffer.lines) {
-            replace(block, in: buffer.lines, maximumLineLength: maximumLineLength)
+           let block = commentBlock(containing: selectedRange.start, in: lines) {
+            replace(block, in: lines, maximumLineLength: maximumLineLength)
             return
         }
 
-        let targetRange = selectedRange.boundsClamped(toLineCount: lineCount)
-        rewrapCommentBlocks(in: targetRange, lines: buffer.lines, maximumLineLength: maximumLineLength)
+        let targetRange = selectedRange.boundsClamped(toLineCount: lines.count)
+        rewrapCommentBlocks(in: targetRange, lines: lines, maximumLineLength: maximumLineLength)
     }
 
-    private func selectedLineRange(in buffer: XCSourceTextBuffer) -> SelectedLineRange {
-        guard let selection = buffer.selections.firstObject as? XCSourceTextRange else {
-            return SelectedLineRange(start: 0, endExclusive: buffer.lines.count, isInsertionPoint: false)
+    private func selectedLineRange(lineCount: Int, selections: NSArray?) -> SelectedLineRange {
+        guard let selection = selections?.firstObject as? NSObject,
+              let selectionStartLine = integerValue(forKeyPath: "start.line", in: selection),
+              let selectionStartColumn = integerValue(forKeyPath: "start.column", in: selection),
+              let selectionEndLine = integerValue(forKeyPath: "end.line", in: selection),
+              let selectionEndColumn = integerValue(forKeyPath: "end.column", in: selection) else {
+            return SelectedLineRange(start: 0, endExclusive: lineCount, isInsertionPoint: false)
         }
 
-        let startLine = min(selection.start.line, selection.end.line)
-        let endLine = max(selection.start.line, selection.end.line)
-        let isInsertionPoint = selection.start.line == selection.end.line && selection.start.column == selection.end.column
-        let endExclusive = isInsertionPoint || selection.end.column > 0 ? endLine + 1 : endLine
+        let startLine = min(selectionStartLine, selectionEndLine)
+        let endLine = max(selectionStartLine, selectionEndLine)
+        let isInsertionPoint = selectionStartLine == selectionEndLine && selectionStartColumn == selectionEndColumn
+        let endExclusive = isInsertionPoint || selectionEndColumn > 0 ? endLine + 1 : endLine
 
         return SelectedLineRange(start: startLine, endExclusive: endExclusive, isInsertionPoint: isInsertionPoint)
+    }
+
+    private func integerValue(forKeyPath keyPath: String, in object: NSObject) -> Int? {
+        if let number = object.value(forKeyPath: keyPath) as? NSNumber {
+            return number.intValue
+        }
+
+        return object.value(forKeyPath: keyPath) as? Int
     }
 
     private func rewrapCommentBlocks(in range: Range<Int>, lines: NSMutableArray, maximumLineLength: Int) {
@@ -171,7 +182,17 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
     }
 
     private func blockComment(in range: Range<Int>, start: BlockCommentStart, lines: NSMutableArray) -> CommentBlock? {
-        let contents = range.map { blockCommentContent(from: lines[$0] as? String ?? "", linePosition: linePosition(for: $0, in: range)) }
+        var contents = range.map { blockCommentContent(from: lines[$0] as? String ?? "", linePosition: linePosition(for: $0, in: range)) }
+
+        if range.count > 1 {
+            if contents.first?.trimmingCharacters(in: .whitespaces).isEmpty == true {
+                contents.removeFirst()
+            }
+
+            if contents.last?.trimmingCharacters(in: .whitespaces).isEmpty == true {
+                contents.removeLast()
+            }
+        }
 
         let endings = replacementLineEndings(for: range, lines: lines)
 

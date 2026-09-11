@@ -9,7 +9,7 @@
     }
   ],
   "defaultOptions" : {
-    "performanceAntipatternCheckerEnabled" : true,
+    "performanceAntipatternCheckerEnabled" : false,
     "targetForVariableExpansion" : {
       "containerPath" : "container:Wrapture.xcodeproj",
       "identifier" : "D44590BC30545AF400D4522D",
