@@ -12,7 +12,7 @@ enum WraptureSettings {
     static let minimumWrapLength = 40
     static let maximumWrapLength = 160
     static let wrapLengthKey = "wrapLength"
-    static let appGroupIdentifier = "group.com.robanderson.Wrapture"
+    static let appGroupIdentifier = "group.com.robanderson.wrapture"
 
     static var defaults: UserDefaults {
         UserDefaults(suiteName: appGroupIdentifier) ?? .standard

@@ -7,12 +7,13 @@
 
 import Foundation
 
-enum WraptureSettings {
-    static let defaultWrapLength = 96
-    static let minimumWrapLength = 40
-    static let maximumWrapLength = 160
+enum Settings {
+    static let defaultWrapLength = 80
+    static let minimumWrapLength = 64
+    static let maximumWrapLength = 128
+    static let stepSize = 8
     static let wrapLengthKey = "wrapLength"
-    static let appGroupIdentifier = "group.com.robanderson.Wrapture"
+    static let appGroupIdentifier = "group.com.robanderson.wrapture"
 
     static var defaults: UserDefaults {
         UserDefaults(suiteName: appGroupIdentifier) ?? .standard

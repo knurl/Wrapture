@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="card" x1="244" y1="210" x2="804" y2="812" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#EAF4FF"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="22" stdDeviation="28" flood-color="#23507A" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <g filter="url(#cardShadow)">
+    <rect x="148" y="132" width="728" height="760" rx="168" fill="url(#card)"/>
+    <rect x="194" y="178" width="636" height="668" rx="126" fill="#FFFFFF" opacity="0.72"/>
+  </g>
+</svg>

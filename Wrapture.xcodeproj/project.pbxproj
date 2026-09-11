@@ -11,6 +11,7 @@
 		D45342D130545C0900A1AC1F /* WraptureExt.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D45342C330545C0900A1AC1F /* WraptureExt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D45342E730545F1C00A1AC1F /* XcodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45342C730545C0900A1AC1F /* XcodeKit.framework */; };
 		D45342E830545F1C00A1AC1F /* XcodeKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D45342C730545C0900A1AC1F /* XcodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4F87F0B3054723F00EED08A /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = D4F87F0A3054723F00EED08A /* AppIcon.icon */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		D45342C730545C0900A1AC1F /* XcodeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XcodeKit.framework; path = Library/Frameworks/XcodeKit.framework; sourceTree = DEVELOPER_DIR; };
 		D45342DB30545C9C00A1AC1F /* WraptureExtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WraptureExtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D45342E430545CB400A1AC1F /* WraptureExt.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = WraptureExt.xctestplan; sourceTree = "<group>"; };
+		D4F87F0A3054723F00EED08A /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -149,6 +151,7 @@
 			children = (
 				D45342C530545C0900A1AC1F /* Cocoa.framework */,
 				D45342C730545C0900A1AC1F /* XcodeKit.framework */,
+				D4F87F0A3054723F00EED08A /* AppIcon.icon */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4F87F0B3054723F00EED08A /* AppIcon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +460,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Wrapture/Wrapture.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -466,6 +471,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -489,6 +495,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Wrapture/Wrapture.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -499,6 +506,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

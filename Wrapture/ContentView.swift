@@ -1,36 +1,40 @@
-//
-//  ContentView.swift
-//  Wrapture
-//
-//  Created by Rob Anderson on 11/09/2026.
-//
-
 import SwiftUI
 
 struct ContentView: View {
-    @AppStorage(WraptureSettings.wrapLengthKey, store: WraptureSettings.defaults)
-    private var storedWrapLength = WraptureSettings.defaultWrapLength
+    @AppStorage(Settings.wrapLengthKey, store: Settings.defaults)
+    private var storedWrapLength = Settings.defaultWrapLength
+    private let presets: [Int]
 
-    private let presets = [80, 88, 96, 100, 120]
+    init() {
+        presets = [Settings.minimumWrapLength, 80, 96, 128, Settings.maximumWrapLength]
+            .filter {
+                stride(
+                    from: Settings.minimumWrapLength,
+                    through: Settings.maximumWrapLength,
+                    by: Settings.stepSize
+                ).contains($0)
+            }
+    }
 
     private var wrapLength: Int {
-        get { WraptureSettings.clampedWrapLength(storedWrapLength) }
-        nonmutating set { storedWrapLength = WraptureSettings.clampedWrapLength(newValue) }
+        get { Settings.clampedWrapLength(storedWrapLength) }
+        nonmutating set { storedWrapLength = Settings.clampedWrapLength(newValue) }
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: 8) {
             header
 
             Divider()
 
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: 24) {
                 controlPanel
                 previewPanel
             }
-            .padding(24)
+            .padding()
         }
-        .frame(minWidth: 560, idealWidth: 680, minHeight: 520)
+        .frame(minWidth: 800, minHeight: 500)
+        //.frame(minWidth: 640, idealWidth: 800, minHeight: 500, idealHeight: 500)
     }
 
     private var header: some View {
@@ -44,19 +48,19 @@ struct ContentView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Wrapture")
                     .font(.title2.weight(.semibold))
-                Text("Comment wrapping preferences for the Xcode editor extension.")
+                Text("Choose the column for re-wrapping your Swift comments.")
                     .foregroundStyle(.secondary)
             }
 
             Spacer()
 
             VStack(alignment: .trailing, spacing: 2) {
+                Text("column number")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
                 Text("\(wrapLength)")
                     .font(.system(size: 34, weight: .bold, design: .rounded))
                     .monospacedDigit()
-                Text("columns")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
             }
         }
         .padding(24)
@@ -67,19 +71,6 @@ struct ContentView: View {
             HStack {
                 Label("Wrap length", systemImage: "ruler")
                     .font(.headline)
-
-                Spacer()
-
-                Stepper(
-                    "\(wrapLength)",
-                    value: Binding(
-                        get: { wrapLength },
-                        set: { wrapLength = $0 }
-                    ),
-                    in: WraptureSettings.minimumWrapLength...WraptureSettings.maximumWrapLength
-                )
-                .monospacedDigit()
-                .labelsHidden()
             }
 
             Slider(
@@ -87,49 +78,62 @@ struct ContentView: View {
                     get: { Double(wrapLength) },
                     set: { wrapLength = Int($0.rounded()) }
                 ),
-                in: Double(WraptureSettings.minimumWrapLength)...Double(WraptureSettings.maximumWrapLength),
-                step: 1
+                in: Double(
+                    Settings.minimumWrapLength
+                )...Double(Settings.maximumWrapLength),
+                step: Double(Settings.stepSize)
             )
 
             HStack(spacing: 8) {
                 ForEach(presets, id: \.self) { preset in
-                    Button {
-                        wrapLength = preset
-                    } label: {
-                        Text("\(preset)")
-                            .monospacedDigit()
-                    }
-                    .buttonStyle(.bordered)
-                    .controlSize(.small)
+                    presetButton(for: preset)
                 }
 
                 Spacer()
 
                 Button {
-                    wrapLength = WraptureSettings.defaultWrapLength
+                    wrapLength = Settings.defaultWrapLength
                 } label: {
-                    Label("Reset", systemImage: "arrow.counterclockwise")
+                    Label("Reset to Default", systemImage: "arrow.counterclockwise")
                 }
-                .buttonStyle(.borderless)
-                .controlSize(.small)
+                .buttonStyle(.glass)
             }
         }
     }
 
+    @ViewBuilder
+    private func presetButton(for preset: Int) -> some View {
+        let button = Button("\(preset)") {
+            wrapLength = preset
+        }
+
+        if preset == Settings.defaultWrapLength {
+            button.buttonStyle(.glassProminent)
+        } else {
+            button.buttonStyle(.glass)
+        }
+    }
+
     private var previewPanel: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading) {
             Label("Preview", systemImage: "text.magnifyingglass")
                 .font(.headline)
 
-            ScrollView([.horizontal, .vertical]) {
-                Text(previewText)
-                    .font(.system(.body, design: .monospaced))
-                    .textSelection(.enabled)
-                    .fixedSize()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                    .padding(14)
+            GeometryReader { proxy in
+                ScrollView([.horizontal, .vertical]) {
+                    Text(previewText)
+                        .monospaced()
+                        .textSelection(.disabled)
+                        .multilineTextAlignment(.leading)
+                        .fixedSize(horizontal: true, vertical: true)
+                        .padding()
+                        .frame(
+                            minWidth: proxy.size.width,
+                            minHeight: proxy.size.height,
+                            alignment: .topLeading
+                        )
+                }
             }
-            .frame(minHeight: 220)
             .background(.quaternary.opacity(0.5), in: RoundedRectangle(cornerRadius: 8))
             .overlay {
                 RoundedRectangle(cornerRadius: 8)
@@ -139,7 +143,9 @@ struct ContentView: View {
     }
 
     private var previewText: String {
-        let sample = "/// Wrapture keeps comments readable without asking you to fuss with line breaks by hand, while preserving hanging indentation for third and later lines."
+        let sample = """
+            /// Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue ante eget lectus hendrerit cursus. Donec ac efficitur nunc, nec dapibus diam. Phasellus eros elit, porttitor ut risus a, hendrerit malesuada nisl. Etiam hendrerit in nibh ac tincidunt. Nulla viverra suscipit libero. Ut nec interdum leo. Nam vitae iaculis odio. Morbi mollis sem hendrerit, feugiat augue id, luctus nisl. Cras leo nisi, vehicula nec fermentum nec, sollicitudin a enim. Donec ante dui, mattis eu tortor sed, ultrices vestibulum dolor. Vivamus ut nisl rutrum, euismod mauris vitae, tempus neque. Aliquam ullamcorper consequat diam, vitae mattis sem efficitur eu. Integer ac dictum nulla, vel semper nisi. Nullam cursus purus ut lectus fringilla laoreet.
+            """
         return wrappedPreviewLine(sample)
     }
 
