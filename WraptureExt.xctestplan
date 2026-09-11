@@ -1,0 +1,30 @@
+{
+  "configurations" : [
+    {
+      "id" : "D2D78C07-6BE0-4322-A2BD-421F43569292",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Wrapture.xcodeproj",
+      "identifier" : "D44590BC30545AF400D4522D",
+      "name" : "Wrapture"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Wrapture.xcodeproj",
+        "identifier" : "D45342DA30545C9C00A1AC1F",
+        "name" : "WraptureExtTests"
+      }
+    }
+  ],
+  "version" : 1
+}

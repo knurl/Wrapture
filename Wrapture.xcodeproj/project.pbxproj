@@ -6,15 +6,22 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D45342C630545C0900A1AC1F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45342C530545C0900A1AC1F /* Cocoa.framework */; };
+		D45342D130545C0900A1AC1F /* WraptureExt.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D45342C330545C0900A1AC1F /* WraptureExt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D45342E730545F1C00A1AC1F /* XcodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45342C730545C0900A1AC1F /* XcodeKit.framework */; };
+		D45342E830545F1C00A1AC1F /* XcodeKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D45342C730545C0900A1AC1F /* XcodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
-		D44590CB30545AF500D4522D /* PBXContainerItemProxy */ = {
+		D45342CF30545C0900A1AC1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D44590B530545AF400D4522D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D44590BC30545AF400D4522D;
-			remoteInfo = Wrapture;
+			remoteGlobalIDString = D45342C230545C0900A1AC1F;
+			remoteInfo = WraptureExt;
 		};
-		D44590D530545AF500D4522D /* PBXContainerItemProxy */ = {
+		D45342DF30545C9C00A1AC1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D44590B530545AF400D4522D /* Project object */;
 			proxyType = 1;
@@ -23,11 +30,49 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D45342D230545C0900A1AC1F /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D45342D130545C0900A1AC1F /* WraptureExt.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D45342E930545F1C00A1AC1F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D45342E830545F1C00A1AC1F /* XcodeKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		D44590BD30545AF400D4522D /* Wrapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wrapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D44590CA30545AF500D4522D /* WraptureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WraptureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D44590D430545AF500D4522D /* WraptureUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WraptureUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D45342C330545C0900A1AC1F /* WraptureExt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WraptureExt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D45342C530545C0900A1AC1F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		D45342C730545C0900A1AC1F /* XcodeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XcodeKit.framework; path = Library/Frameworks/XcodeKit.framework; sourceTree = DEVELOPER_DIR; };
+		D45342DB30545C9C00A1AC1F /* WraptureExtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WraptureExtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D45342E430545CB400A1AC1F /* WraptureExt.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = WraptureExt.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D45342D530545C0900A1AC1F /* Exceptions for "WraptureExt" folder in "WraptureExt" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D45342C230545C0900A1AC1F /* WraptureExt */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		D44590BF30545AF400D4522D /* Wrapture */ = {
@@ -35,14 +80,17 @@
 			path = Wrapture;
 			sourceTree = "<group>";
 		};
-		D44590CD30545AF500D4522D /* WraptureTests */ = {
+		D45342C930545C0900A1AC1F /* WraptureExt */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = WraptureTests;
+			exceptions = (
+				D45342D530545C0900A1AC1F /* Exceptions for "WraptureExt" folder in "WraptureExt" target */,
+			);
+			path = WraptureExt;
 			sourceTree = "<group>";
 		};
-		D44590D730545AF500D4522D /* WraptureUITests */ = {
+		D45342DC30545C9C00A1AC1F /* WraptureExtTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = WraptureUITests;
+			path = WraptureExtTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -55,14 +103,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D44590C730545AF500D4522D /* Frameworks */ = {
+		D45342C030545C0900A1AC1F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D45342C630545C0900A1AC1F /* Cocoa.framework in Frameworks */,
+				D45342E730545F1C00A1AC1F /* XcodeKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D44590D130545AF500D4522D /* Frameworks */ = {
+		D45342D830545C9C00A1AC1F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -75,9 +125,11 @@
 		D44590B430545AF400D4522D = {
 			isa = PBXGroup;
 			children = (
+				D45342E430545CB400A1AC1F /* WraptureExt.xctestplan */,
 				D44590BF30545AF400D4522D /* Wrapture */,
-				D44590CD30545AF500D4522D /* WraptureTests */,
-				D44590D730545AF500D4522D /* WraptureUITests */,
+				D45342C930545C0900A1AC1F /* WraptureExt */,
+				D45342DC30545C9C00A1AC1F /* WraptureExtTests */,
+				D45342C430545C0900A1AC1F /* Frameworks */,
 				D44590BE30545AF400D4522D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,10 +138,19 @@
 			isa = PBXGroup;
 			children = (
 				D44590BD30545AF400D4522D /* Wrapture.app */,
-				D44590CA30545AF500D4522D /* WraptureTests.xctest */,
-				D44590D430545AF500D4522D /* WraptureUITests.xctest */,
+				D45342C330545C0900A1AC1F /* WraptureExt.appex */,
+				D45342DB30545C9C00A1AC1F /* WraptureExtTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D45342C430545C0900A1AC1F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D45342C530545C0900A1AC1F /* Cocoa.framework */,
+				D45342C730545C0900A1AC1F /* XcodeKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,10 +163,12 @@
 				D44590B930545AF400D4522D /* Sources */,
 				D44590BA30545AF400D4522D /* Frameworks */,
 				D44590BB30545AF400D4522D /* Resources */,
+				D45342D230545C0900A1AC1F /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D45342D030545C0900A1AC1F /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				D44590BF30545AF400D4522D /* Wrapture */,
@@ -117,51 +180,51 @@
 			productReference = D44590BD30545AF400D4522D /* Wrapture.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D44590C930545AF500D4522D /* WraptureTests */ = {
+		D45342C230545C0900A1AC1F /* WraptureExt */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D44590E130545AF500D4522D /* Build configuration list for PBXNativeTarget "WraptureTests" */;
+			buildConfigurationList = D45342D630545C0900A1AC1F /* Build configuration list for PBXNativeTarget "WraptureExt" */;
 			buildPhases = (
-				D44590C630545AF500D4522D /* Sources */,
-				D44590C730545AF500D4522D /* Frameworks */,
-				D44590C830545AF500D4522D /* Resources */,
+				D45342BF30545C0900A1AC1F /* Sources */,
+				D45342C030545C0900A1AC1F /* Frameworks */,
+				D45342C130545C0900A1AC1F /* Resources */,
+				D45342E930545F1C00A1AC1F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D44590CC30545AF500D4522D /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				D44590CD30545AF500D4522D /* WraptureTests */,
+				D45342C930545C0900A1AC1F /* WraptureExt */,
 			);
-			name = WraptureTests;
+			name = WraptureExt;
 			packageProductDependencies = (
 			);
-			productName = WraptureTests;
-			productReference = D44590CA30545AF500D4522D /* WraptureTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
+			productName = WraptureExt;
+			productReference = D45342C330545C0900A1AC1F /* WraptureExt.appex */;
+			productType = "com.apple.product-type.xcode-extension";
 		};
-		D44590D330545AF500D4522D /* WraptureUITests */ = {
+		D45342DA30545C9C00A1AC1F /* WraptureExtTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D44590E430545AF500D4522D /* Build configuration list for PBXNativeTarget "WraptureUITests" */;
+			buildConfigurationList = D45342E130545C9C00A1AC1F /* Build configuration list for PBXNativeTarget "WraptureExtTests" */;
 			buildPhases = (
-				D44590D030545AF500D4522D /* Sources */,
-				D44590D130545AF500D4522D /* Frameworks */,
-				D44590D230545AF500D4522D /* Resources */,
+				D45342D730545C9C00A1AC1F /* Sources */,
+				D45342D830545C9C00A1AC1F /* Frameworks */,
+				D45342D930545C9C00A1AC1F /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D44590D630545AF500D4522D /* PBXTargetDependency */,
+				D45342E030545C9C00A1AC1F /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				D44590D730545AF500D4522D /* WraptureUITests */,
+				D45342DC30545C9C00A1AC1F /* WraptureExtTests */,
 			);
-			name = WraptureUITests;
+			name = WraptureExtTests;
 			packageProductDependencies = (
 			);
-			productName = WraptureUITests;
-			productReference = D44590D430545AF500D4522D /* WraptureUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
+			productName = WraptureExtTests;
+			productReference = D45342DB30545C9C00A1AC1F /* WraptureExtTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -176,11 +239,10 @@
 					D44590BC30545AF400D4522D = {
 						CreatedOnToolsVersion = 26.6;
 					};
-					D44590C930545AF500D4522D = {
+					D45342C230545C0900A1AC1F = {
 						CreatedOnToolsVersion = 26.6;
-						TestTargetID = D44590BC30545AF400D4522D;
 					};
-					D44590D330545AF500D4522D = {
+					D45342DA30545C9C00A1AC1F = {
 						CreatedOnToolsVersion = 26.6;
 						TestTargetID = D44590BC30545AF400D4522D;
 					};
@@ -201,8 +263,8 @@
 			projectRoot = "";
 			targets = (
 				D44590BC30545AF400D4522D /* Wrapture */,
-				D44590C930545AF500D4522D /* WraptureTests */,
-				D44590D330545AF500D4522D /* WraptureUITests */,
+				D45342C230545C0900A1AC1F /* WraptureExt */,
+				D45342DA30545C9C00A1AC1F /* WraptureExtTests */,
 			);
 		};
 /* End PBXProject section */
@@ -215,14 +277,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D44590C830545AF500D4522D /* Resources */ = {
+		D45342C130545C0900A1AC1F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D44590D230545AF500D4522D /* Resources */ = {
+		D45342D930545C9C00A1AC1F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -239,14 +301,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D44590C630545AF500D4522D /* Sources */ = {
+		D45342BF30545C0900A1AC1F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D44590D030545AF500D4522D /* Sources */ = {
+		D45342D730545C9C00A1AC1F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -256,15 +318,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D44590CC30545AF500D4522D /* PBXTargetDependency */ = {
+		D45342D030545C0900A1AC1F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D44590BC30545AF400D4522D /* Wrapture */;
-			targetProxy = D44590CB30545AF500D4522D /* PBXContainerItemProxy */;
+			target = D45342C230545C0900A1AC1F /* WraptureExt */;
+			targetProxy = D45342CF30545C0900A1AC1F /* PBXContainerItemProxy */;
 		};
-		D44590D630545AF500D4522D /* PBXTargetDependency */ = {
+		D45342E030545C9C00A1AC1F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D44590BC30545AF400D4522D /* Wrapture */;
-			targetProxy = D44590D530545AF500D4522D /* PBXContainerItemProxy */;
+			targetProxy = D45342DF30545C9C00A1AC1F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -394,6 +456,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Wrapture/Wrapture.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -426,6 +489,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Wrapture/Wrapture.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -453,83 +517,119 @@
 			};
 			name = Release;
 		};
-		D44590E230545AF500D4522D /* Debug */ = {
+		D45342D330545C0900A1AC1F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_ENTITLEMENTS = WraptureExt/WraptureExt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T2D87DH5Q3;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				INFOPLIST_FILE = WraptureExt/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Wrapture;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.robanderson.WraptureTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.robanderson.Wrapture.WraptureExt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				REGISTER_APP_GROUPS = YES;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wrapture.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Wrapture";
 			};
 			name = Debug;
 		};
-		D44590E330545AF500D4522D /* Release */ = {
+		D45342D430545C0900A1AC1F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_ENTITLEMENTS = WraptureExt/WraptureExt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T2D87DH5Q3;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				INFOPLIST_FILE = WraptureExt/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Wrapture;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.robanderson.WraptureTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.robanderson.Wrapture.WraptureExt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				REGISTER_APP_GROUPS = YES;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wrapture.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Wrapture";
 			};
 			name = Release;
 		};
-		D44590E530545AF500D4522D /* Debug */ = {
+		D45342E230545C9C00A1AC1F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T2D87DH5Q3;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.robanderson.WraptureUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.robanderson.WraptureExtTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = Wrapture;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wrapture.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Wrapture";
+				XROS_DEPLOYMENT_TARGET = 26.5;
 			};
 			name = Debug;
 		};
-		D44590E630545AF500D4522D /* Release */ = {
+		D45342E330545C9C00A1AC1F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T2D87DH5Q3;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.robanderson.WraptureUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.robanderson.WraptureExtTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = Wrapture;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wrapture.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Wrapture";
+				XROS_DEPLOYMENT_TARGET = 26.5;
 			};
 			name = Release;
 		};
@@ -554,20 +654,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D44590E130545AF500D4522D /* Build configuration list for PBXNativeTarget "WraptureTests" */ = {
+		D45342D630545C0900A1AC1F /* Build configuration list for PBXNativeTarget "WraptureExt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D44590E230545AF500D4522D /* Debug */,
-				D44590E330545AF500D4522D /* Release */,
+				D45342D330545C0900A1AC1F /* Debug */,
+				D45342D430545C0900A1AC1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D44590E430545AF500D4522D /* Build configuration list for PBXNativeTarget "WraptureUITests" */ = {
+		D45342E130545C9C00A1AC1F /* Build configuration list for PBXNativeTarget "WraptureExtTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D44590E530545AF500D4522D /* Debug */,
-				D44590E630545AF500D4522D /* Release */,
+				D45342E230545C9C00A1AC1F /* Debug */,
+				D45342E330545C9C00A1AC1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
