@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		D45342C630545C0900A1AC1F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45342C530545C0900A1AC1F /* Cocoa.framework */; };
 		D45342D130545C0900A1AC1F /* WraptureExt.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D45342C330545C0900A1AC1F /* WraptureExt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		D45342E730545F1C00A1AC1F /* XcodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45342C730545C0900A1AC1F /* XcodeKit.framework */; };
-		D45342E830545F1C00A1AC1F /* XcodeKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D45342C730545C0900A1AC1F /* XcodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D46B21C130549E580028495C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D46B21C030549E580028495C /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -49,7 +47,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D45342E830545F1C00A1AC1F /* XcodeKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,7 +57,6 @@
 		D44590BD30545AF400D4522D /* Wrapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wrapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D45342C330545C0900A1AC1F /* WraptureExt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WraptureExt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D45342C530545C0900A1AC1F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		D45342C730545C0900A1AC1F /* XcodeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XcodeKit.framework; path = Library/Frameworks/XcodeKit.framework; sourceTree = DEVELOPER_DIR; };
 		D45342DB30545C9C00A1AC1F /* WraptureExtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WraptureExtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D45342E430545CB400A1AC1F /* WraptureExt.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = WraptureExt.xctestplan; sourceTree = "<group>"; };
 		D46B21C030549E580028495C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -110,7 +106,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D45342C630545C0900A1AC1F /* Cocoa.framework in Frameworks */,
-				D45342E730545F1C00A1AC1F /* XcodeKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,7 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				D45342C530545C0900A1AC1F /* Cocoa.framework */,
-				D45342C730545C0900A1AC1F /* XcodeKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
