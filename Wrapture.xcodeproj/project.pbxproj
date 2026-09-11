@@ -12,7 +12,6 @@
 		D45342E730545F1C00A1AC1F /* XcodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45342C730545C0900A1AC1F /* XcodeKit.framework */; };
 		D45342E830545F1C00A1AC1F /* XcodeKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D45342C730545C0900A1AC1F /* XcodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D46B21C130549E580028495C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D46B21C030549E580028495C /* README.md */; };
-		D4F87F0B3054723F00EED08A /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = D4F87F0A3054723F00EED08A /* AppIcon.icon */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +64,6 @@
 		D45342DB30545C9C00A1AC1F /* WraptureExtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WraptureExtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D45342E430545CB400A1AC1F /* WraptureExt.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = WraptureExt.xctestplan; sourceTree = "<group>"; };
 		D46B21C030549E580028495C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		D4F87F0A3054723F00EED08A /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -154,7 +152,6 @@
 			children = (
 				D45342C530545C0900A1AC1F /* Cocoa.framework */,
 				D45342C730545C0900A1AC1F /* XcodeKit.framework */,
-				D4F87F0A3054723F00EED08A /* AppIcon.icon */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -281,7 +278,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D46B21C130549E580028495C /* README.md in Resources */,
-				D4F87F0B3054723F00EED08A /* AppIcon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

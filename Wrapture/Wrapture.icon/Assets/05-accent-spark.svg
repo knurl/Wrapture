@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="accent" x1="625" y1="300" x2="745" y2="440" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFE08A"/>
+      <stop offset="1" stop-color="#FF9F0A"/>
+    </linearGradient>
+    <filter id="accentShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#23507A" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <circle cx="682" cy="365" r="66" fill="url(#accent)" filter="url(#accentShadow)"/>
+  <path d="M657 362h50M682 337v50" fill="none" stroke="#FFFFFF" stroke-width="25" stroke-linecap="round"/>
+</svg>
