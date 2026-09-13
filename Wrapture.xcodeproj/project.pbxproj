@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D45342C630545C0900A1AC1F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45342C530545C0900A1AC1F /* Cocoa.framework */; };
+		D41678193054CE4300F4183C /* XcodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41678183054CE4300F4183C /* XcodeKit.framework */; };
+		D416781A3054CE4300F4183C /* XcodeKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D41678183054CE4300F4183C /* XcodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D45342D130545C0900A1AC1F /* WraptureExt.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D45342C330545C0900A1AC1F /* WraptureExt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D46B21C130549E580028495C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D46B21C030549E580028495C /* README.md */; };
 /* End PBXBuildFile section */
@@ -30,6 +31,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		D416781B3054CE4300F4183C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D416781A3054CE4300F4183C /* XcodeKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D45342D230545C0900A1AC1F /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -41,19 +53,10 @@
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D45342E930545F1C00A1AC1F /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D41678183054CE4300F4183C /* XcodeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XcodeKit.framework; path = Library/Frameworks/XcodeKit.framework; sourceTree = DEVELOPER_DIR; };
 		D44590BD30545AF400D4522D /* Wrapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wrapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D45342C330545C0900A1AC1F /* WraptureExt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WraptureExt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D45342C530545C0900A1AC1F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -105,7 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D45342C630545C0900A1AC1F /* Cocoa.framework in Frameworks */,
+				D41678193054CE4300F4183C /* XcodeKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +148,7 @@
 		D45342C430545C0900A1AC1F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D41678183054CE4300F4183C /* XcodeKit.framework */,
 				D45342C530545C0900A1AC1F /* Cocoa.framework */,
 			);
 			name = Frameworks;
@@ -184,7 +188,7 @@
 				D45342BF30545C0900A1AC1F /* Sources */,
 				D45342C030545C0900A1AC1F /* Frameworks */,
 				D45342C130545C0900A1AC1F /* Resources */,
-				D45342E930545F1C00A1AC1F /* Embed Frameworks */,
+				D416781B3054CE4300F4183C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

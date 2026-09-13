@@ -47,6 +47,63 @@ struct WraptureExtTests {
         expectLinesFit(output)
     }
 
+    @Test func alignsDocumentationListContinuationsAfterBulletMarker() {
+        let input = [
+            "/// Rewrap a block or selection of comment lines.\n",
+            "/// - Parameters:\n",
+            "///   - sourceLines: An array of lines (as String) to be rewrapped while preserving nested list continuation indentation for markdown documentation comments.\n",
+            "///   - maximumLineLength: How long each line may be, at maximum, before the formatter wraps it onto another line.\n",
+            "///\n",
+            "/// - Returns: An array of String representing the wrapped lines after comment content has been normalized.\n"
+        ]
+
+        let output = formatter.rewrapCommentLines(input, maximumLineLength: maximumLineLength)
+
+        #expect(output.contains("/// - Parameters:\n"))
+        #expect(output.contains("///   - sourceLines: An array of lines (as String) to be rewrapped while preserving nested list\n"))
+        #expect(output.contains("///     continuation indentation for markdown documentation comments.\n"))
+        #expect(output.contains("///   - maximumLineLength: How long each line may be, at maximum, before the formatter wraps it onto\n"))
+        #expect(output.contains("///     another line.\n"))
+        #expect(output.contains("/// - Returns: An array of String representing the wrapped lines after comment content has been\n"))
+        #expect(output.contains("///   normalized.\n"))
+        expectLinesFit(output)
+    }
+
+    @Test func alignsNumberedListContinuationsAfterMarker() {
+        let input = [
+            "// 1. Parse the current selection and find the surrounding comment block before applying wrapping to the selected lines.\n",
+            "// 10) Preserve list indentation even when a numbered marker grows wider than the first list item marker.\n"
+        ]
+
+        let output = formatter.rewrapCommentLines(input, maximumLineLength: 84)
+
+        #expect(output == [
+            "// 1. Parse the current selection and find the surrounding comment block before\n",
+            "//    applying wrapping to the selected lines.\n",
+            "// 10) Preserve list indentation even when a numbered marker grows wider than the\n",
+            "//     first list item marker.\n"
+        ])
+        expectLinesFit(output)
+    }
+
+    @Test func alignsNestedBlockCommentListContinuationsAfterBulletMarker() {
+        let input = [
+            "/**\n",
+            " *   - sourceLines: An array of lines (as String) to be rewrapped while preserving nested list continuation indentation for markdown documentation comments.\n",
+            " */\n"
+        ]
+
+        let output = formatter.rewrapCommentLines(input, maximumLineLength: maximumLineLength)
+
+        #expect(output == [
+            "/**\n",
+            " *   - sourceLines: An array of lines (as String) to be rewrapped while preserving nested list\n",
+            " *     continuation indentation for markdown documentation comments.\n",
+            " */\n"
+        ])
+        expectLinesFit(output)
+    }
+
     @Test func secondLineIndentControlsLineCommentContinuations() {
         let markers = ["//", "///", "//!"]
 

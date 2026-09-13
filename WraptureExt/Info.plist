@@ -6,6 +6,8 @@
 	<dict>
 		<key>NSExtensionAttributes</key>
 		<dict>
+			<key>XCSourceEditorExtensionPrincipalClass</key>
+			<string>$(PRODUCT_MODULE_NAME).SourceEditorExtension</string>
 			<key>XCSourceEditorCommandDefinitions</key>
 			<array>
 				<dict>
@@ -17,8 +19,6 @@
 					<string>Rewrap Swift Comments</string>
 				</dict>
 			</array>
-			<key>XCSourceEditorExtensionPrincipalClass</key>
-			<string>$(PRODUCT_MODULE_NAME).SourceEditorExtension</string>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.dt.Xcode.extension.source-editor</string>

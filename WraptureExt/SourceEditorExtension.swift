@@ -1,4 +1,5 @@
 import Foundation
+import XcodeKit
 
-class SourceEditorExtension: NSObject {
+class SourceEditorExtension: NSObject, XCSourceEditorExtension {
 }
