@@ -1,0 +1,5 @@
+- Please test comments of different types (// ..., /// ..., /* ... */)
+- Please try markdown and doc comments
+- Please try multiple paragraphs
+- Please try various types of indentation. If the 2nd line of a paragraph is indented, that should be preserved throughout the paragraph. If the line starts with a dash ('-') or a numbered item (e.g. '1.' or 1)'), then the left edge of the paragraph should line up _after_ the bullet or numbered item.
+

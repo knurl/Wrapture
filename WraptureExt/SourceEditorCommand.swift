@@ -1,11 +1,15 @@
 import Foundation
+#if canImport(XcodeKit)
 import XcodeKit
+#endif
 
-class SourceEditorCommand: NSObject, XCSourceEditorCommand {
+class SourceEditorCommand: NSObject {
+#if canImport(XcodeKit)
     func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void) {
         rewrapComments(in: invocation.buffer)
         completionHandler(nil)
     }
+#endif
 
     func rewrapCommentLines(
         _ sourceLines: [String],
@@ -29,6 +33,7 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
         return lines.compactMap { $0 as? String }
     }
 
+#if canImport(XcodeKit)
     private func rewrapComments(in buffer: XCSourceTextBuffer) {
         let selectedRange = selectedLineRange(in: buffer)
         let lineCount = buffer.lines.count
@@ -57,6 +62,7 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
 
         return SelectedLineRange(start: startLine, endExclusive: endExclusive, isInsertionPoint: isInsertionPoint)
     }
+#endif
 
     private func rewrapCommentBlocks(in range: Range<Int>, lines: NSMutableArray, maximumLineLength: Int) {
         var lineIndex = range.lowerBound
@@ -164,7 +170,13 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
     }
 
     private func blockComment(in range: Range<Int>, start: BlockCommentStart, lines: NSMutableArray) -> CommentBlock? {
-        var contents = range.map { blockCommentContent(from: lines[$0] as? String ?? "", linePosition: linePosition(for: $0, in: range)) }
+        var contents = range.map {
+            blockCommentContent(
+                from: lines[$0] as? String ?? "",
+                linePosition: linePosition(for: $0, in: range),
+                indentation: start.indentation
+            )
+        }
 
         if range.count > 1 {
             if contents.first?.trimmingCharacters(in: .whitespaces).isEmpty == true {
@@ -364,8 +376,15 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
         splitLineEnding(from: line).text.contains("*/")
     }
 
-    private func blockCommentContent(from line: String, linePosition: BlockLinePosition) -> String {
-        var text = splitLineEnding(from: line).text.trimmingCharacters(in: .whitespaces)
+    private func blockCommentContent(
+        from line: String,
+        linePosition: BlockLinePosition,
+        indentation: String
+    ) -> String {
+        var text = splitLineEnding(from: line).text
+        if text.hasPrefix(indentation) {
+            text.removeFirst(indentation.count)
+        }
 
         switch linePosition {
         case .single:
@@ -376,10 +395,10 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
             removeBlockOpener(from: &text)
             removeBlockContentSeparator(from: &text)
         case .middle:
-            removeLeadingBlockAsterisk(from: &text)
+            removeBlockLinePrefix(from: &text)
         case .last:
             removeBlockCloser(from: &text)
-            removeLeadingBlockAsterisk(from: &text)
+            removeBlockLinePrefix(from: &text)
         }
 
         return text.trimmingTrailingWhitespace()
@@ -406,6 +425,17 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
         }
     }
 
+    private func removeBlockLinePrefix(from text: inout String) {
+        if text.hasPrefix(" *") {
+            text.removeFirst()
+            removeLeadingBlockAsterisk(from: &text)
+        } else if text.hasPrefix("*") {
+            removeLeadingBlockAsterisk(from: &text)
+        } else {
+            removeBlockContentSeparator(from: &text)
+        }
+    }
+
     private func removeBlockContentSeparator(from text: inout String) {
         if text.hasPrefix(" ") {
             text.removeFirst()
@@ -424,6 +454,10 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
         return (line, "")
     }
 }
+
+#if canImport(XcodeKit)
+extension SourceEditorCommand: XCSourceEditorCommand {}
+#endif
 
 private extension String {
     func trimmingTrailingWhitespace() -> String {

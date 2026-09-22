@@ -6,7 +6,7 @@ struct ContentView: View {
     private let presets: [Int]
 
     init() {
-        presets = [Settings.minimumWrapLength, 80, 96, 128, Settings.maximumWrapLength]
+        presets = [Settings.minimumWrapLength, 80, 96, Settings.maximumWrapLength]
             .filter {
                 stride(
                     from: Settings.minimumWrapLength,
@@ -33,8 +33,7 @@ struct ContentView: View {
             }
             .padding()
         }
-        .frame(minWidth: 640, minHeight: 500)
-        //.frame(minWidth: 640, idealWidth: 800, minHeight: 500, idealHeight: 500)
+        .frame(minWidth: 576, idealWidth: 576, minHeight: 496, idealHeight: 496)
     }
 
     private var header: some View {
@@ -122,6 +121,7 @@ struct ContentView: View {
             GeometryReader { proxy in
                 ScrollView([.horizontal, .vertical]) {
                     Text(previewText)
+                        .font(.caption)
                         .monospaced()
                         .textSelection(.disabled)
                         .multilineTextAlignment(.leading)
@@ -144,13 +144,13 @@ struct ContentView: View {
 
     private var previewText: String {
         let sample = """
-            /// Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue ante eget lectus hendrerit cursus. Donec ac efficitur nunc, nec dapibus diam. Phasellus eros elit, porttitor ut risus a, hendrerit malesuada nisl. Etiam hendrerit in nibh ac tincidunt. Nulla viverra suscipit libero. Ut nec interdum leo. Nam vitae iaculis odio. Morbi mollis sem hendrerit, feugiat augue id, luctus nisl. Cras leo nisi, vehicula nec fermentum nec, sollicitudin a enim. Donec ante dui, mattis eu tortor sed, ultrices vestibulum dolor. Vivamus ut nisl rutrum, euismod mauris vitae, tempus neque. Aliquam ullamcorper consequat diam, vitae mattis sem efficitur eu. Integer ac dictum nulla, vel semper nisi. Nullam cursus purus ut lectus fringilla laoreet.
+            // To understand political power right, and derive it from its original, we must consider, what state all men are naturally in, and that is, a state of perfect freedom to order their actions, and dispose of their possessions and persons, as they think fit, within the bounds of the law of nature, without asking leave, or depending upon the will of any other man. A state also of equality, wherein all the power and jurisdiction is reciprocal, no one having more than another; there being nothing more evident, than that creatures of the same species and rank, promiscuously born to all the same advantages of nature, and the use of the same faculties, should also be equal one amongst another without subordination or subjection, unless the lord and master of them all should, by any manifest declaration of his will, set one above another, and confer on him, by an evident and clear appointment, an undoubted right to dominion and sovereignty.
             """
         return wrappedPreviewLine(sample)
     }
 
     private func wrappedPreviewLine(_ line: String) -> String {
-        let marker = "/// "
+        let marker = "// "
         let content = String(line.dropFirst(marker.count))
         let width = max(wrapLength - marker.count, 20)
         let words = content.split(separator: " ").map(String.init)

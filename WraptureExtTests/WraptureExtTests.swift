@@ -104,6 +104,33 @@ struct WraptureExtTests {
         expectLinesFit(output)
     }
 
+    @Test func preservesNestedDocumentationFieldsInStarlessBlockComment() {
+        let input = [
+            "    /**\n",
+            "     Creates a timeline.\n",
+            "\n",
+            "     - Parameters:\n",
+            "       - end: The date that terminates the final displayed range.\n",
+            "       - maxToShow: Maximum number of items to be shown.\n",
+            "     - Returns: A formatted timeline.\n",
+            "     */\n"
+        ]
+
+        let output = formatter.rewrapCommentLines(input, maximumLineLength: maximumLineLength)
+
+        #expect(output == [
+            "    /**\n",
+            "     * Creates a timeline.\n",
+            "     *\n",
+            "     * - Parameters:\n",
+            "     *   - end: The date that terminates the final displayed range.\n",
+            "     *   - maxToShow: Maximum number of items to be shown.\n",
+            "     * - Returns: A formatted timeline.\n",
+            "     */\n"
+        ])
+        expectLinesFit(output)
+    }
+
     @Test func secondLineIndentControlsLineCommentContinuations() {
         let markers = ["//", "///", "//!"]
 
